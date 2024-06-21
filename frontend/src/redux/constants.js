@@ -1,5 +1,5 @@
 // const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
-export const BASE_URL = ""
+export const BASE_URL = "http://127.0.0.1:5000"
 export const USERS_URL = "/api/users"
 export const CATEGORY_URL = "/api/category";
 export const PRODUCT_URL = "/api/products";
