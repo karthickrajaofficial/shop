@@ -14,7 +14,7 @@ import orderRoutes from './routes/orderRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 
 dotenv.config();
-const port = process.env.PORT || 5000;
+const port =  5000;
 connectDB();
 const app = express();
 
@@ -66,13 +66,15 @@ app.use('/api/payment', paymentRoutes);
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Serve static files from the React app
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-  app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  });
-}
+// Serve static files from the 'dist' directory
+const staticPath = path.join(__dirname, '../ecommerce/frontend/dist');
+app.use(express.static(staticPath));
+
+// Serve the 'index.html' file for all other requests
+const indexPath = path.resolve(__dirname, '../ecommerce/frontend/dist/index.html');
+app.get('*', (req, res) => {
+  res.sendFile(indexPath);
+});
 
 // Start server
 app.listen(port, () => {
