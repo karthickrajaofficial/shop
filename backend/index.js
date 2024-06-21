@@ -24,14 +24,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Middleware configuration for CORS
-const allowedOrigins = ['http://localhost:5173', 'https://jewelbyshree.vercel.app'];
+// const allowedOrigins = ['http://localhost:5173', 'https://jewelbyshree.vercel.app'];
+// app.use(cors({
+//   origin: allowedOrigins,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true // Allow credentials (cookies, authorization headers, etc.)
+// }));
 app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+  credentials: true,
+  origin: true,
 }));
-
 // Handle OPTIONS requests
 app.options('*', cors({
   origin: allowedOrigins,
