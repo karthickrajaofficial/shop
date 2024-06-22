@@ -69,16 +69,15 @@ app.use('/api/payment', paymentRoutes);
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Serve static files from the 'dist' directory
-const staticPath = path.join(__dirname, '../ecommerce/frontend/dist');
+// Serve static files from the 'dist' directory (for frontend)
+const staticPath = path.join(__dirname, "frontend", "dist");
 app.use(express.static(staticPath));
 
-// Serve the 'index.html' file for all other requests
-const indexPath = path.resolve(__dirname, '../ecommerce/frontend/dist/index.html');
+// Serve the 'index.html' file for all other requests (for SPA routing)
+const indexPath = path.resolve(__dirname, "frontend", "dist", "index.html");
 app.get('*', (req, res) => {
   res.sendFile(indexPath);
 });
-
 // Start server
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
